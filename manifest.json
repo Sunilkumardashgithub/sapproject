@@ -1,0 +1,70 @@
+{
+	"_version": "1.14.0",
+	"sap.app": {
+		"id": "ns.products_by_category_card",
+		"type": "card",
+		"title": "ListCard",
+		"subTitle": "test",
+		"applicationVersion": {
+			"version": "1.0.0"
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"deviceTypes": {
+			"desktop": true,
+			"phone": true,
+			"tablet": true
+		},
+		"icons": {
+			"icon": "sap-icon://list"
+		}
+	},
+	"sap.card": {
+		"type": "List",
+		"configuration": {
+			"destinations": {
+				"myDestination": {
+					"name": "Northwind",
+					"defaultUrl": "https://services.odata.org/V4/OData/OData.svc"
+				}
+			},
+			"parameters": {
+				"maxItems": {
+					"value": 7,
+					"type": "integer"
+				}
+			}
+		},
+		"designtime": "dt/configuration",
+		"header": {
+			"title": "Welcome to card",
+			"subTitle": "These are the top Product of this month",
+			"icon": {
+				"src": "sap-icon://accept"
+			}
+		},
+		"content": {
+			"data": {
+				"request": {
+					"url": "{{destinations.myDestination}}/Products",
+					"method": "GET"
+				},
+				"path": "/value"
+			},
+			"item": {
+				"title": "{Name}",
+				"description": "{Description}",
+				"info": {
+					"value": "Rating: {Price}"
+				}
+			}
+		}
+	},
+	"sap.platform.mobilecards": {
+		"compatible": false
+	},
+	"sap.ui5": {
+		"flexBundle": false
+	}
+}
